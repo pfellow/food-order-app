@@ -13,15 +13,7 @@ export default function AvailableMeals() {
     );
     const result = await response.json();
 
-    const loadedMeals = [];
-
-    for (let element in result) {
-      for (let meal of result[element]) {
-        loadedMeals.push(meal);
-      }
-    }
-
-    setMeals(loadedMeals);
+    setMeals(Object.entries(result)[0][1]);
     setIsloading(false);
   }, []);
 
