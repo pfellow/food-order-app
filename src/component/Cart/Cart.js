@@ -10,7 +10,6 @@ export default function Cart() {
   const hasItems = cartCtx.items.length > 0;
 
   const cartItemRemoveHandler = (item) => {
-    console.log("here");
     cartCtx.removeItem(item);
   };
   const cartItemAddHandler = (item) => {
