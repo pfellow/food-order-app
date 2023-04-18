@@ -31,10 +31,6 @@ export default function Cart() {
     </ul>
   );
 
-  const orderHandler = () => {
-    console.log("Ordering...");
-  };
-
   return (
     <Modal>
       {cartItems}
@@ -47,7 +43,7 @@ export default function Cart() {
           Close
         </button>
         {hasItems && (
-          <button className={styles.button} onClick={orderHandler}>
+          <button className={styles.button} onClick={cartCtx.openCheckout}>
             Order
           </button>
         )}

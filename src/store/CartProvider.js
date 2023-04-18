@@ -7,6 +7,9 @@ const defaultCartState = {
 };
 
 const cartReducer = (state, action) => {
+  if (action.type === "CLEAR") {
+    return defaultCartState;
+  }
   const existingCartItemIndex = state.items.findIndex(
     (item) => item.id === action.item.id
   );
@@ -74,6 +77,15 @@ export default function CartProvider(props) {
     props.setCartOpen(true);
   };
 
+  const openCheckoutHandler = () => {
+    props.setCartOpen(false);
+    props.setCheckoutOpen(true);
+  };
+
+  const clearCartHandler = () => {
+    dispatchCartAction({ type: "CLEAR" });
+  };
+
   const cartContext = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
@@ -81,6 +93,8 @@ export default function CartProvider(props) {
     removeItem: removeItemFromCartHandler,
     closeCart: closeCartHandler,
     openCart: openCartHandler,
+    openCheckout: openCheckoutHandler,
+    clearCart: clearCartHandler,
   };
   return (
     <CartContext.Provider value={cartContext}>
